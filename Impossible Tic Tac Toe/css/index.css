@@ -1,0 +1,125 @@
+/* Styling for the entire page */
+body {
+    background-color: #f4dfbb;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    display: flex; /* Use flexbox to arrange elements vertically by default */
+    flex-direction: column; /* Stack elements vertically by default */
+    align-items: center; /* Center horizontally */
+}
+
+/* Styling for the status box */
+.status-box {
+    background-color: #d4ac68;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative; /* Set to relative */
+    z-index: 1; /* Ensure it's above other content */
+    width: 500px; /* Adjusted width */
+    max-height: 20px; /* Adjusted height */
+    margin: 0 auto; /* Center horizontally */
+}
+
+.close-button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Styling for the statistics container */
+.statistics-container {
+    display: flex; /* Use flexbox to arrange elements horizontally */
+    justify-content: space-between; /* Spread elements horizontally */
+    margin: 10px 0; /* Add margin for spacing */
+    width: 500px; /* Adjusted width */
+    align-items: center; /* Center vertically */
+}
+
+
+.bold-text {
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.white-text {
+    font-size: 18px;
+    color: white;
+    margin: 5px 0;
+}
+
+/* Styling for the game container */
+#game-container {
+    width: 300px; /* Adjust the size as needed */
+    margin: 20px auto; /* Center the game container */
+    border: 2px solid #c4a878; /* Border color for the game container */
+    border-radius: 20px; /* Rounded corners */
+    padding: 20px;
+}
+
+/* Styling for the heading */
+h1 {
+    color: #c4a878;
+}
+
+/* Styling for the paragraph */
+p {
+    color: #c4a878;
+}
+
+/* Styling for the Tic Tac Toe board */
+.tic-tac-toe {
+    display: grid;
+    grid-template-columns: 1fr; /* Adjusted to display cells vertically */
+    grid-template-rows: repeat(3, 1fr); /* To create 3 rows */
+    grid-gap: 5px;
+    width: 100%;
+    max-width: 300px; /* Adjust the size as needed */
+    max-height: 300px; /* Adjust the size as needed */
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+}
+
+.cell {
+    flex: 1;
+    height: 50px; /* Adjust the size as needed */
+    padding: 20px; /* Add padding for spacing */
+    background-color: #e5d2b1; /* Line color for the board */
+    border: 1px solid #c4a878; /* Border color for cells */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 70px; /* Increased font size */
+    font-weight: bold;
+    color: #c4a878; /* Text color for O and X */
+}
+
+/* Styling for the buttons */
+.btn {
+    background-color: #d4ac68;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px 5px; /* Adjusted margin for spacing */
+    display: inline; /* Display buttons inline */
+}
+
+.btn:hover {
+    background-color: #ab8c57;
+}
+
+.ver {
+    font-size: 12px;
+    margin: 2px 0;
+}
