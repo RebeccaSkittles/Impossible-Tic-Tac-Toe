@@ -1,0 +1,54 @@
+MIT License - Fit For 'Impossible Tic Tac Toe'
+
+Copyright (c) XR Development
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), with the following conditions:
+
+1. Usage: You are allowed to use, copy, modify, and distribute the Software, but not sublicense it or merge it into other projects.
+
+2. Redistributions: Redistributions of the Software, in whole or in part, must retain the above copyright notice and this permission notice.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+END-USER LICENSE AGREEMENT (EULA)
+
+IMPORTANT: READ THIS AGREEMENT CAREFULLY BEFORE USING THE SOFTWARE. BY USING THE SOFTWARE, YOU AGREE TO BE BOUND BY THE TERMS OF THIS EULA. IF YOU DO NOT AGREE TO THE TERMS OF THIS EULA, DO NOT USE THE SOFTWARE.
+
+1. GRANT OF LICENSE
+
+Subject to the terms and conditions of this End-User License Agreement (EULA), [Your Name or Company Name] ("Licensor") grants you a limited, non-exclusive, non-transferable, revocable license to use the software product ("Software") solely for your personal or internal business purposes, as applicable.
+
+2. RESTRICTIONS
+
+You may not:
+
+   a. Sublicense, sell, rent, lease, or otherwise transfer the Software or any rights granted by this EULA to any third party.
+
+   b. Reverse engineer, decompile, disassemble, or attempt to discover the source code of the Software.
+
+   c. Modify, adapt, or create derivative works of the Software.
+
+   d. Remove or alter any copyright, trademark, or other proprietary rights notices from the Software.
+
+3. TERMINATION
+
+This EULA is effective until terminated. Your rights under this EULA will terminate automatically without notice from Licensor if you fail to comply with any term(s) of this EULA. Upon termination of this EULA, you must cease all use of the Software and destroy all copies, full or partial, of the Software.
+
+4. DISCLAIMER OF WARRANTIES
+
+THE SOFTWARE IS PROVIDED "AS IS" AND "AS AVAILABLE," WITH ALL FAULTS AND WITHOUT WARRANTY OF ANY KIND. LICENSOR DISCLAIMS ALL WARRANTIES AND CONDITIONS, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT.
+
+5. LIMITATION OF LIABILITY
+
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL LICENSOR BE LIABLE FOR ANY SPECIAL, INCIDENTAL, INDIRECT, OR CONSEQUENTIAL DAMAGES WHATSOEVER (INCLUDING, WITHOUT LIMITATION, DAMAGES FOR LOSS OF PROFITS, BUSINESS INTERRUPTION, LOSS OF INFORMATION, OR ANY OTHER PECUNIARY LOSS) ARISING OUT OF THE USE OF OR INABILITY TO USE THE SOFTWARE, EVEN IF LICENSOR HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+6. GOVERNING LAW
+
+This EULA shall be governed by and construed in accordance with the laws of [Your Jurisdiction]. Any dispute arising from or relating to this EULA shall be subject to the exclusive jurisdiction of the courts in [Your Jurisdiction].
+
+By using the Software, you acknowledge that you have read and understood this EULA and agree to be bound by its terms and conditions.
+
+support@xrdevelopment.net - https://xrdevelopment.net
+
+Last Updated - 21/09/23
