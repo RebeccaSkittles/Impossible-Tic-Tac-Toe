@@ -49,7 +49,7 @@ Pressing this button will give you a hint but please know that it is defintly no
 2. Have Fun!
 
 ## Play Localy
-1. Clone this repository to your computer by using this command `git clone https://github.com/RebeccaSkittles/Impossible-Tic-Tac-Toe/repo.git` or download it from github
+1. Clone this repository to your computer by using this command `git clone https://github.com/RebeccaSkittles/Impossible-Tic-Tac-Toe.git` or download it from github
 2. Open `index.html` in your web browser to start the game.
 3. Have Fun!
    
@@ -59,6 +59,12 @@ Pressing this button will give you a hint but please know that it is defintly no
 - CSS
 - JavaScript
 
+# Ackowlagments
+## Canvas Confetti
+Thanks to **Kiril Vatev** for [Canvas Confetti](https://github.com/catdad/canvas-confetti) this allows the project to have a cool winning effect!
+- confetti.js is actualy Canvas Confetti!
+
 # License
 
-This project is licensed under the [MIT License](lisence.txt)
+This project is licensed under the [MIT License](lisence.txt) 
+(C)2023 XR Development. - Please follow directons of the lisencse before you publish this to the public!
