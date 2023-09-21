@@ -37,7 +37,7 @@ Pressing this button will give you a hint but please know that it is defintly no
 1. Controller Support - **Xbox** Only at this point.
 2. Chnage log - This will show when the game has been updated it will only show once as it will be stored using [Local Browser Storage](https://en.wikipedia.org/wiki/Web_storage).
 3. Improved AI - This will imporve the **Computer / AI** for the game this also makes the **Hint System** better as well.
-4. New wining screen - ***Confetti bomb!***
+4. New wining screen - ***🎉Confetti bomb!🎉***
 5. Other GUI Fixes
 ## v: 1.2
 ***Nothing Planed Yet!***
