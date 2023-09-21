@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impossible Tic Tac Toe</title>
+    <link rel="stylesheet" href="css/index.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/logo.png">
+</head>
+<body>
+    <h1>Impossible Tic Tac Toe</h1>
+    <p title="There is curently no knowen way to beat the game, the AI used in this is really dumb if you do beat the game well done!" >There is only one possible way to win</p>
+
+    <div class="btn-container">
+    <!-- Buttons for Reset Board and Hint -->
+    <button title="Pressing this will reset the board also reseting your game." class="btn" id="reset-button">Reset Board</button>
+    <button title="Pressing this will give you a hint, but the hints might not help you it might make you lose." class="btn" id="hint-button">Hint <span id="hint-button-text">(3)</span></button>
+    </div>
+    
+    <div class="status-box" id="status-box">This is a status box to show what's happening in the game.
+        <button class="close-button" id="close-button">×</button>
+    </div>
+
+    <!-- Game container with Tic Tac Toe board -->
+    <div id="game-container">
+        <div class="tic-tac-toe">
+            <div class="row">
+                <div class="cell" id="cell1"></div>
+                <div class="cell" id="cell2"></div>
+                <div class="cell" id="cell3"></div>
+            </div>
+            <div class="row">
+                <div class="cell" id="cell4"></div>
+                <div class="cell" id="cell5"></div>
+                <div class="cell" id="cell6"></div>
+            </div>
+            <div class="row">
+                <div class="cell" id="cell7"></div>
+                <div class="cell" id="cell8"></div>
+                <div class="cell" id="cell9"></div>
+            </div>
+        </div>
+    </div>
+</body>
+<p class="ver" >v: 1.0</p>
+<p class="bold-text">© 2023 XR Development</p>
+<script src="js/index.js"></script>
+</html>
