@@ -11,6 +11,21 @@ const resetAudio = new Audio("mp3/reset.mp3");
 const hintAudio = new Audio("mp3/hint.mp3");
 const errorAudio = new Audio("mp3/error.mp3");
 
+// Show chnage log
+// Function to show the changelog
+function showChangelog() {
+  const changelog = document.querySelector('.changelog');
+  if (changelog) {
+    changelog.style.display = 'block';
+  }
+}
+
+// Add an event listener to the button with id 'txtbtn'
+const txtbtn = document.getElementById('txtbtn');
+if (txtbtn) {
+  txtbtn.addEventListener('click', showChangelog);
+}
+
 // Save the positions of 'X' and 'O' on the board to local storage
 function savePlayerWinningMove() {
     const playerXPositions = getPositionsOnBoard(board, 'X');
