@@ -66,6 +66,10 @@ Pressing this button will give you a hint but please know that it is defintly no
 Thanks to **Kiril Vatev** for [Canvas Confetti](https://github.com/catdad/canvas-confetti) this allows the project to have a cool winning effect!
 - confetti.js is actualy Canvas Confetti!
 
+# Marked / Markdown
+Thanks to **Markedjs** for [Marked](https://github.com/markedjs/marked) this allows us to use Markdown in our change log.
+- marked.js is the file!
+
 # License
 
 This project is licensed under the [MIT License](lisence.txt) 
