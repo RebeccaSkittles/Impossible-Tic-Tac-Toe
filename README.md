@@ -5,7 +5,7 @@
 ## Overview
 ![Tic-Tac-Toe-Art-1](art/art1.png)
 
-Impossible Tic Tac Toe is an advanced version of the classic Tic Tac Toe game. It includes a highly intelligent AI opponent that is nearly impossible to defeat. Can you beat the unbeatable?
+Impossible Tic Tac Toe is an advanced version of the classic Tic Tac Toe game. It includes a highly intelligent AI opponent that is nearly impossible to defeat. Can you beat the unbeatable? Well if you know how to play Tic Tac Toe than this should be easy as the AI is increadly dumb and not allways good.
 
 ## Features
 
@@ -66,7 +66,7 @@ Pressing this button will give you a hint but please know that it is defintly no
 Thanks to **Kiril Vatev** for [Canvas Confetti](https://github.com/catdad/canvas-confetti) this allows the project to have a cool winning effect!
 - confetti.js is actualy Canvas Confetti!
 
-# Marked / Markdown
+## Marked / Markdown
 Thanks to **Markedjs** for [Marked](https://github.com/markedjs/marked) this allows us to use Markdown in our change log.
 - marked.js is the file!
 
