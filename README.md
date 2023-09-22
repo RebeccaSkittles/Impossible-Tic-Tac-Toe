@@ -1,5 +1,5 @@
 # Impossible Tic Tac Toe
-[![Version](https://img.shields.io/badge/version-1.0-brightgreen.svg)]([https://github.com/RebeccaSKittles/Im](https://github.com/RebeccaSkittles/Impossible-Tic-Tac-Toe))
+[![Version](https://img.shields.io/badge/version-1.1-brightgreen.svg)]([https://github.com/RebeccaSKittles/Im](https://github.com/RebeccaSkittles/Impossible-Tic-Tac-Toe))
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)]([https://github.com/yourusername/your-repo](https://github.com/RebeccaSkittles/Impossible-Tic-Tac-Toe))
 
 ## Overview
