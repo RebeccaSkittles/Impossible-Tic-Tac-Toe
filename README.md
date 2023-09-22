@@ -15,6 +15,8 @@ Impossible Tic Tac Toe is an advanced version of the classic Tic Tac Toe game. I
 
 - **Responsive Design:** Play the game on various devices, as it's designed to work seamlessly on both desktop and mobile.
 
+- **Easter Eggs** have some fun with goofy ahh effects while playing type in your browser bar `#dba` it might take two goes than click snd enjoy!
+
 ## How to Play
 ![Tic-Tac-Toe-Art-4](art/art4.png)
 1. Open the game in your browser.
@@ -33,7 +35,7 @@ Pressing this button will reset the board that icludes your game so don't click 
 Pressing this button will give you a hint but please know that it is defintly not always useful it can even make you lose sometimes be careful when using this.
 
 # Coming Soon
-## v: 1.1
+## v: 1.1 - ***Now Avalibe!***
 1. Controller Support - **Xbox** Only at this point.
 2. Chnage log - This will show when the game has been updated it will only show once as it will be stored using [Local Browser Storage](https://en.wikipedia.org/wiki/Web_storage).
 3. Improved AI - This will imporve the **Computer / AI** for the game this also makes the **Hint System** better as well.
