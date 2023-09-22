@@ -123,3 +123,12 @@ p {
     font-size: 12px;
     margin: 2px 0;
 }
+
+/* Styling for the footer */
+.footer {
+    text-align: center; /* Center-align text in the footer */
+    position: fixed; /* Fixed position at the bottom of the viewport */
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }

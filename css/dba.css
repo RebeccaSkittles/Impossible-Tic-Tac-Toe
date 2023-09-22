@@ -1,0 +1,71 @@
+/* Define the animation for waving, rotating, and changing colors */
+@keyframes waveAndRotateAndColorChange {
+    0% {
+      transform: translate(0, 0) rotate(0deg) scale(1);
+      background-color: red;
+    }
+    25% {
+      transform: translate(40px, 20px) rotate(5deg) scale(1.1);
+      background-color: blue;
+    }
+    50% {
+      transform: translate(0, 0) rotate(0deg) scale(1.2);
+      background-color: green;
+    }
+    75% {
+      transform: translate(-40px, -20px) rotate(-5deg) scale(1.1);
+      background-color: yellow;
+    }
+    100% {
+      transform: translate(0, 0) rotate(0deg) scale(1);
+      background-color: purple;
+    }
+  }
+  
+  /* Apply the animation to the body element */
+  body {
+    animation: waveAndRotateAndColorChange 1s infinite alternate, movePage 5s infinite;
+    transform-origin: center;
+  }
+  
+  /* Define the animation for moving the entire page */
+  @keyframes movePage {
+    0% {
+      transform: translate(-80, -60);
+    }
+    25% {
+      transform: translate(-180px, -100px);
+    }
+    50% {
+      transform: translate(-69, 69);
+    }
+    75% {
+      transform: translate(180px, 100px);
+    }
+    85% {
+        transform: translate(200, 150);
+      }
+    100% {
+      transform: translate(80, 60);
+    }
+  }
+  
+  /* Define the animation for rotating and scaling */
+@keyframes rotateAndScale {
+    0% {
+      transform: rotate(0deg) scale(1);
+    }
+    50% {
+      transform: rotate(180deg) scale(1.2);
+    }
+    100% {
+      transform: rotate(360deg) scale(1);
+    }
+  }
+  
+  /* Apply the rotation and scaling animation to all elements */
+  body.dba * {
+    animation: rotateAndScale 5s infinite alternate;
+    transform-origin: center;
+  }
+  

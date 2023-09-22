@@ -3,6 +3,37 @@ const board = ['', '', '', '', '', '', '', '', ''];
 const player = 'O'; // Player's marker
 const computer = 'X'; // Computer's marker
 
+// Sound Effects
+const winAudio = new Audio("mp3/win.mp3");
+const clickAudio = new Audio("mp3/click.mp3");
+const loseAudio = new Audio("mp3/lose.mp3");
+const resetAudio = new Audio("mp3/reset.mp3");
+const hintAudio = new Audio("mp3/hint.mp3");
+const errorAudio = new Audio("mp3/error.mp3");
+
+// Save the positions of 'X' and 'O' on the board to local storage
+function savePlayerWinningMove() {
+    const playerXPositions = getPositionsOnBoard(board, 'X');
+    const playerOPositions = getPositionsOnBoard(board, 'O');
+    
+    // Store these positions, you can choose how to store them (e.g., in an array)
+    const playerWinningMove = {
+        XPositions: playerXPositions,
+        OPositions: playerOPositions,
+    };
+
+    // Retrieve the current number of wins from local storage
+    const currentWinCount = localStorage.getItem('winCount') || 0;
+
+    // Increment the win count
+    const newWinCount = parseInt(currentWinCount) + 1;
+    
+    // Example: Storing in local storage with an incrementing key (e.g., 'win1', 'win2', etc.)
+    localStorage.setItem(`win${newWinCount}`, JSON.stringify(playerWinningMove));
+    localStorage.setItem('winCount', newWinCount);
+}
+
+
 // Function to check if the game is over
 function isGameOver() {
   // Check for winning conditions
@@ -29,44 +60,25 @@ function isGameOver() {
 
 // Function to check if a move is valid
 function isValidMove(index) {
-  // Check if the board position is empty
-  return board[index] === '';
+    // Check if the board position is empty
+    return board[index] === '';
 }
 
-// Function to make the computer's move
-function computerMove() {
-  // Try to win if possible
-  for (let i = 0; i < board.length; i++) {
-    if (isValidMove(i)) {
-      board[i] = computer;
-      if (isGameOver()) {
-        return i;
-      }
-      board[i] = ''; // Reset the move
-    }
-  }
-
-  // Try to block the player from winning
-  for (let i = 0; i < board.length; i++) {
-    if (isValidMove(i)) {
-      board[i] = player;
-      if (isGameOver()) {
-        // Block the player by taking this move
-        board[i] = computer;
-        return i;
-      }
-      board[i] = ''; // Reset the move
-    }
-  }
-
-  // If no winning or blocking moves, make a random move
-  while (true) {
-    const randomIndex = Math.floor(Math.random() * 9);
-    if (isValidMove(randomIndex)) {
-      return randomIndex;
-    }
-  }
-}
+function winConfetti() {
+    const duration = 12 * 1000; // Duration of the confetti effect in milliseconds (5 seconds)
+    const options = {
+      particleCount: 600, // Number of confetti particles
+      spread: 200, // Spread of the particles
+    };
+  
+    // Trigger the confetti effect
+    confetti(options);
+  
+    // Remove confetti after the specified duration
+    setTimeout(() => {
+      confetti.reset();
+    }, duration);
+  }  
 
 // Function to update the game state and the display
 function updateGame(index, marker) {
@@ -85,6 +97,7 @@ function resetGame() {
       const cellElement = document.getElementById(`cell${i + 1}`);
       if (cellElement) {
         cellElement.textContent = ''; // Clear the display
+        resetAudio.play();
       }
     }
     // Reset hint count to 3
@@ -96,7 +109,6 @@ function resetGame() {
       statusBox.style.display = 'none';
     }
   }
-  
 
 // Hide the status box initially
 const statusBox = document.querySelector('.status-box');
@@ -119,6 +131,8 @@ function checkGameOverAndUpdateStatus() {
         (board[2] === player && board[4] === player && board[6] === player)
       ) {
         updateStatusBoxText('You have won the game!');
+        winAudio.play();
+        winConfetti();
       }
       // Check for winning conditions for the computer (X)
       else if (
@@ -132,8 +146,10 @@ function checkGameOverAndUpdateStatus() {
         (board[2] === computer && board[4] === computer && board[6] === computer)
       ) {
         updateStatusBoxText('The computer has won...');
+        loseAudio.play();
       } else {
         updateStatusBoxText('It\'s a draw! Nobody has won the game.');
+        loseAudio.play();
       }
     }
   }    
@@ -165,6 +181,7 @@ for (let i = 1; i <= 9; i++) {
   if (cell) {
     cell.addEventListener('click', () => {
       if (isValidMove(i - 1) && !isGameOver()) {
+        clickAudio.play();
         updateGame(i - 1, player);
         if (!isGameOver()) {
           const computerIndex = computerMove();
@@ -194,8 +211,95 @@ function updateHintButtonText() {
   }
 }
 
+// Function to check if the player can win in one move
+function canPlayerWin() {
+  const winningCombos = [
+    [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
+    [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
+    [0, 4, 8], [2, 4, 6] // Diagonals
+  ];
+
+  for (const combo of winningCombos) {
+    const [a, b, c] = combo;
+    if (board[a] === player && board[b] === player && isValidMove(c)) {
+      return c; // Return the winning move
+    }
+    if (board[b] === player && board[c] === player && isValidMove(a)) {
+      return a; // Return the winning move
+    }
+    if (board[c] === player && board[a] === player && isValidMove(b)) {
+      return b; // Return the winning move
+    }
+  }
+
+  return -1; // Player can't win in one move
+}
+
+// Function to provide a hint to the player
 function provideHint() {
-  if (hintCount > 0) {
+    if (hintCount > 0) {
+      // Priority 1: Check if the player can win, and give the player a winning move
+      const playerWinningMove = canPlayerWin();
+      if (playerWinningMove !== -1) {
+        const hintedCell = document.getElementById(`cell${playerWinningMove + 1}`);
+        if (hintedCell) {
+          hintedCell.style.backgroundColor = 'lightgreen'; // Highlight the cell
+          setTimeout(() => {
+            hintedCell.style.backgroundColor = ''; // Remove the green background color after a delay
+          }, 1000); // Adjust the delay time as needed
+        }
+        hintCount--;
+        updateHintButtonText(); // Update the hint button text
+        return; // Exit the function
+        }
+    // Priority 2: If the computer is in a winning position, block it
+    const winningCombos = [
+      [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
+      [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
+      [0, 4, 8], [2, 4, 6] // Diagonals
+    ];
+
+    for (const combo of winningCombos) {
+      const [a, b, c] = combo;
+      if (board[a] === computer && board[b] === computer && isValidMove(c)) {
+        const hintedCell = document.getElementById(`cell${c + 1}`);
+        if (hintedCell) {
+          hintedCell.style.backgroundColor = 'lightgreen'; // Highlight the cell
+          setTimeout(() => {
+            hintedCell.style.backgroundColor = ''; // Remove the green background color after a delay
+          }, 1000); // Adjust the delay time as needed
+        }
+        hintCount--;
+        updateHintButtonText(); // Update the hint button text
+        return; // Exit the function
+      }
+      if (board[b] === computer && board[c] === computer && isValidMove(a)) {
+        const hintedCell = document.getElementById(`cell${a + 1}`);
+        if (hintedCell) {
+          hintedCell.style.backgroundColor = 'lightgreen'; // Highlight the cell
+          setTimeout(() => {
+            hintedCell.style.backgroundColor = ''; // Remove the green background color after a delay
+          }, 1000); // Adjust the delay time as needed
+        }
+        hintCount--;
+        updateHintButtonText(); // Update the hint button text
+        return; // Exit the function
+      }
+      if (board[c] === computer && board[a] === computer && isValidMove(b)) {
+        const hintedCell = document.getElementById(`cell${b + 1}`);
+        if (hintedCell) {
+          hintedCell.style.backgroundColor = 'lightgreen'; // Highlight the cell
+          setTimeout(() => {
+            hintedCell.style.backgroundColor = ''; // Remove the green background color after a delay
+          }, 1000); // Adjust the delay time as needed
+        }
+        hintCount--;
+        updateHintButtonText(); // Update the hint button text
+        return; // Exit the function
+      }
+    }
+
+    // Priority 3: If there are 2 or more winning possibilities for the computer, choose randomly
     const emptyCells = [];
     for (let i = 0; i < board.length; i++) {
       if (isValidMove(i)) {
@@ -208,6 +312,7 @@ function provideHint() {
       const hintedCell = document.getElementById(`cell${randomIndex + 1}`);
       if (hintedCell) {
         hintedCell.style.backgroundColor = 'lightgreen'; // Highlight the cell
+        hintAudio.play();
         setTimeout(() => {
           hintedCell.style.backgroundColor = ''; // Remove the green background color after a delay
         }, 1000); // Adjust the delay time as needed
@@ -231,5 +336,159 @@ if (resetButton) {
   resetButton.addEventListener('click', resetGame);
 }
 
+// Function to detect controller connection
+function detectController() {
+    const gamepads = navigator.getGamepads();
+    for (const gamepad of gamepads) {
+        if (gamepad) {
+            // A controller is connected
+            return gamepad;
+        }
+    }
+    return null; // No controller detected
+}
+
+let lastButtonPressTime = 0; // Variable to track the time of the last button press
+const buttonPressDelay = 500; // Delay time in milliseconds (0.5 seconds)
+
+let highlightedCell = 4; // Start with cell 5 (middle)
+let joystickEnabled = true; // Enable joystick input
+
+let lastJoystickMoveTime = 0; // Variable to track the time of the last joystick movement
+const joystickMoveDelay = 200; // Delay time in milliseconds (0.2 seconds)
+const joystickThreshold = 0.5; // Adjust the threshold as needed
+const cellHighlightColor = '#d1bd9b'; // Cell highlight color
+
+// Function to highlight the current cell
+function highlightCurrentCell() {
+    // Implement highlighting logic here
+    // Change the background color of the cell to cellHighlightColor
+    const currentHighlightedCell = document.getElementById(`cell${highlightedCell + 1}`);
+    if (currentHighlightedCell) {
+        currentHighlightedCell.style.backgroundColor = cellHighlightColor;
+    }
+}
+
+// Function to clear cell highlighting
+function clearCellHighlight() {
+    // Implement clearing highlighting logic here
+    // Reset the background color of all cells
+    for (let i = 0; i < 9; i++) {
+        const cell = document.getElementById(`cell${i + 1}`);
+        if (cell) {
+            cell.style.backgroundColor = '';
+        }
+    }
+}
+
+// Handle Controller Input
+function handleControllerInput() {
+    const controller = detectController();
+    let hintButtonPressed = false; // Track if the B button was pressed
+
+    if (controller) {
+        // Handle input from the controller
+        const leftJoystickX = controller.axes[0];
+        const leftJoystickY = controller.axes[1];
+
+        // Check if the joystick is moved in the X-axis
+        if (leftJoystickX > joystickThreshold && joystickEnabled) {
+            // Move the highlighted cell to the right
+            highlightedCell = (highlightedCell + 1) % 9;
+            clearCellHighlight(); // Clear previous highlighting
+            highlightCurrentCell(); // Highlight the current cell
+            joystickEnabled = false; // Disable joystick for a moment
+            setTimeout(() => {
+                joystickEnabled = true; // Re-enable joystick after a delay
+            }, joystickMoveDelay); // Adjust the delay time in milliseconds (e.g., 200ms)
+        } else if (leftJoystickX < -joystickThreshold && joystickEnabled) {
+            // Move the highlighted cell to the left
+            highlightedCell = (highlightedCell - 1 + 9) % 9;
+            clearCellHighlight(); // Clear previous highlighting
+            highlightCurrentCell(); // Highlight the current cell
+            joystickEnabled = false; // Disable joystick for a moment
+            setTimeout(() => {
+                joystickEnabled = true; // Re-enable joystick after a delay
+            }, joystickMoveDelay); // Adjust the delay time in milliseconds (e.g., 200ms)
+        }
+
+        // Check if the joystick is moved in the Y-axis (inverted)
+        if (leftJoystickY < -joystickThreshold && joystickEnabled) {
+            // Move the highlighted cell upward
+            highlightedCell = (highlightedCell - 3 + 9) % 9;
+            clearCellHighlight(); // Clear previous highlighting
+            highlightCurrentCell(); // Highlight the current cell
+            joystickEnabled = false; // Disable joystick for a moment
+            setTimeout(() => {
+                joystickEnabled = true; // Re-enable joystick after a delay
+            }, joystickMoveDelay); // Adjust the delay time in milliseconds (e.g., 200ms)
+        } else if (leftJoystickY > joystickThreshold && joystickEnabled) {
+            // Move the highlighted cell downward
+            highlightedCell = (highlightedCell + 3) % 9;
+            clearCellHighlight(); // Clear previous highlighting
+            highlightCurrentCell(); // Highlight the current cell
+            joystickEnabled = false; // Disable joystick for a moment
+            setTimeout(() => {
+                joystickEnabled = true; // Re-enable joystick after a delay
+            }, joystickMoveDelay); // Adjust the delay time in milliseconds (e.g., 200ms)
+        }
+
+        // Get the current time
+        const currentTime = Date.now();
+
+        // Check for button presses (e.g., A, X, B)
+        if (controller.buttons[0].pressed) {
+            // A button pressed, place O
+    if (currentTime - lastButtonPressTime >= buttonPressDelay) {
+        const selectedCellIndex = highlightedCell;
+        if (isValidMove(selectedCellIndex) && !isGameOver()) {
+            // Place the "O" marker for the player
+            updateGame(selectedCellIndex, player);
+
+            // Check if the game is over
+            if (!isGameOver()) {
+                // Computer's turn
+                const computerIndex = computerMove();
+                updateGame(computerIndex, computer);
+
+                // Check if the game is over after the computer's move
+                if (!isGameOver()) {
+                    // Player's turn, you can highlight the initial cell here
+                    // For simplicity, we'll just use the same cell again
+                    clearCellHighlight();
+                    highlightCurrentCell();
+                }
+            }
+
+            // Update the last button press time
+            lastButtonPressTime = currentTime;
+        }
+    }
+        } else if (controller.buttons[2].pressed) {
+            // X button pressed, reset the board
+            if (currentTime - lastButtonPressTime >= buttonPressDelay) {
+                resetGame();
+                lastButtonPressTime = currentTime;
+            }
+        } else if (controller.buttons[1].pressed && !hintButtonPressed) {
+            // B button pressed and not previously pressed, trigger the hint function
+            hintButtonPressed = true; // Set the flag to indicate the button was pressed
+            if (currentTime - lastButtonPressTime >= buttonPressDelay) {
+                provideHint();
+                lastButtonPressTime = currentTime;
+            }
+        } else if (!controller.buttons[1].pressed) {
+            // Reset the hint button flag when B button is released
+            hintButtonPressed = false;
+        }
+    }
+
+    // Repeat this function to continuously check for input
+    requestAnimationFrame(handleControllerInput);
+}
+
+// Start monitoring controller input
+handleControllerInput();
+  
 // Initialize the game
 resetGame();
